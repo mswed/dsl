@@ -479,6 +479,15 @@ class DSL(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         self.setWindowTitle('DSL Version 3.0')
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
 
+        # create fonts
+        self.title_font = QtGui.QFont()
+        self.title_font.setPointSize(24)
+        self.title_font.setBold(True)
+
+        self.empty_font = QtGui.QFont()
+        self.empty_font.setPointSize(12)
+        self.empty_font.setBold(True)
+
         # create a main layout
         self.main_layout = QtWidgets.QVBoxLayout()
 
@@ -547,6 +556,8 @@ class DSL(MayaQWidgetDockableMixin, QtWidgets.QDialog):
 
             if self.current_dir:
                 self.create_layout()
+            else:
+                self.create_empty_layout()
         except TypeError:
             print 'preferences not found'
 
@@ -575,20 +586,35 @@ class DSL(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         for i in reversed(range(self.main_layout.count())):
             self.main_layout.itemAt(i).widget().setParent(None)
 
+    def create_empty_layout(self):
+        title = QtWidgets.QLabel("Something's Wrong")
+        title.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignCenter)
+        title.setContentsMargins(1, 1, 1, 20)
+        title.setFont(self.title_font)
+        self.main_layout.addWidget(title)
+
+        empty_widget = QtWidgets.QWidget()
+        empty_layout = QtWidgets.QVBoxLayout()
+        empty_widget.setLayout(empty_layout)
+        empty_label = QtWidgets.QLabel('No scripts found.\nPlease use File > Preferences to add and\n'
+                                       'activate a folder script')
+        empty_label.setFont(self.empty_font)
+        empty_label.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignCenter)
+        empty_label.setMinimumSize(300, 600)
+        empty_layout.addWidget(empty_label)
+        self.main_layout.addWidget(empty_widget)
+
+        self.setLayout(self.main_layout)
+
     def create_layout(self):
         """
         Add buttons to the window representing all of the scripts
         """
-        # create fonts
-        title_font = QtGui.QFont()
-        title_font.setPointSize(24)
-        title_font.setBold(True)
-
         # create the window's main layout
         title = QtWidgets.QLabel(os.path.basename(self.current_dir).title())
         title.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignCenter)
         title.setContentsMargins(1, 1, 1, 20)
-        title.setFont(title_font)
+        title.setFont(self.title_font)
 
         self.main_layout.addWidget(title)
 
@@ -713,5 +739,8 @@ if __name__ == "__main__":
     dsl_preferences = ui.load_preferences()
 
     area = dsl_preferences.get('docking_position')
+    if not area:
+        area = None
+    print 'WTF?!', area
     ui.show(dockable=True, allowedAreas=['left', 'right'], area=area, retain=False)
     ui.reposition()

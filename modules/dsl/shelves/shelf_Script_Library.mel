@@ -33,7 +33,7 @@ global proc shelf_Script_Library () {
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "import DynamicScriptLibrary as dsl\n\ntry:\n    ui.close()\nexcept Exception:\n    pass\n\nui = dsl.DSL()\ndsl_preferences = ui.load_preferences()\n\narea = dsl_preferences.get('docking_position')\nui.show(dockable=True, allowedAreas=['left', 'right'], area=area, retain=False)\nui.reposition()" 
+        -command "import DynamicScriptLibrary as dsl\n\ntry:\n    ui.close()\nexcept Exception:\n    pass\n\nui = dsl.DSL()\ndsl_preferences = ui.load_preferences()\n\narea = dsl_preferences.get('docking_position')\nif not area:\n        area = None\nui.show(dockable=True, allowedAreas=['left', 'right'], area=area, retain=False)\nui.reposition()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
