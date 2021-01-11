@@ -3,10 +3,10 @@
 import os
 import sys
 import json
+import re
 import subprocess
 from itertools import islice
 from functools import partial
-from pprint import pprint
 
 from PySide2 import QtCore
 from PySide2 import QtWidgets
@@ -53,6 +53,7 @@ class Script(object):
             if self.file_path.endswith('.py') or self.file_path.endswith('.mel'):
                 with open(self.file_path) as target_script:
                     header = list(islice(target_script, 20))
+                    header = '\n'.join(header)
                     self.valid = True
                     return header
 
@@ -62,24 +63,24 @@ class Script(object):
         """
         if self.script_extension == '.py' or self.script_extension == '.mel':
             try:
-                self.button_color = self.find_in_header('dsl_color:')[0]
-                self.button_name = self.find_in_header('dsl_button:')[0]
-                self.button_description = '\n'.join(self.find_in_header('dsl_description:'))
-                self.button_help = '\n'.join(self.find_in_header('dsl_help:'))
+                self.button_name = re.search('dsl_button:\s*(.*)', self.header).group(1)
+                self.button_color = re.search('dsl_color:\s*(\w*)', self.header).group(1)
+                self.button_description = re.search('dsl_description:\s*(.*)', self.header).group(1)
+                self.button_help = '\n'.join(re.findall('dsl_help:\s*(.*)', self.header))
 
                 # a button can appear in multiple tabs and preform multiple actions
                 self.button_tabs = {}
-                tabs = self.find_in_header('dsl_tab:')
+                tabs = re.findall("dsl_tab:\s*(.*):(\d*):(.*)", self.header)
                 for tab in tabs:
-                    tab_info = tab.split(':')
-                    button_tab = tab_info[0]
-                    button_line = tab_info[1]
-                    button_command = tab_info[2]
+                    button_tab = tab[0]
+                    button_line = tab[1]
+                    button_command = tab[2].strip()
                     self.button_tabs[button_tab] = {'button_line': button_line, 'button_command': button_command}
 
                 # mark the script as valid
                 self.valid = True
-            except IndexError, e:
+            except (IndexError, AttributeError) as e:
+                # print 'error loading script', self.script_name
                 # print e
                 pass
 
@@ -161,16 +162,15 @@ class DSLButton(QtWidgets.QPushButton):
     def button_callback(self, script_name, command):
 
         if self.script_path.endswith('.py'):
-
-            if command == 'main()':
+            if command == '':
                 command_string = 'import %s\nreload(%s)' % (script_name, script_name)
                 exec (command_string)
-                print(self.script_path)
+                # print(self.script_path)
 
             else:
                 command_string = 'import %s\nreload(%s)\n%s.%s' % (
                     script_name, script_name, script_name, command)
-                print(command_string)
+                # print(command_string)
                 exec (command_string)
         else:
             pm.mel.source(self.script_path)
@@ -178,7 +178,6 @@ class DSLButton(QtWidgets.QPushButton):
 
     @staticmethod
     def set_colors(color='yellow'):
-
         main_color = color
         dark_color = color
         light_color = color
@@ -187,22 +186,24 @@ class DSLButton(QtWidgets.QPushButton):
             main_color = '#fdfd96'
             dark_color = '#fcfc4b'
             light_color = '#fefee1'
-        if color.lower() == 'red':
+        elif color.lower() == 'red':
             main_color = '#ff6961'
             dark_color = '#ff2015'
             light_color = '#ffb2ae'
-        if color.lower() == 'green':
+        elif color.lower() == 'green':
             main_color = '#77dd77'
             dark_color = '#3ace3a'
             light_color = '#b4ecb4'
-        if color.lower() == 'purple':
+        elif color.lower() == 'purple':
             main_color = '#b39eb5'
             dark_color = '#917394'
             light_color = '#d5c9d6'
-        if color.lower() == 'blue':
+        elif color.lower() == 'blue':
             main_color = '#aec6cf'
             dark_color = '#8eafbc'
             light_color = '#dee8eb'
+        else:
+            print 'I am not sure what %s should look like but I will do my best!' % color
 
         return main_color, dark_color, light_color
 
@@ -700,9 +701,15 @@ class DSL(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         # get list of files
         script_folders = [folder for folder in os.listdir(self.current_dir) if
                           os.path.isdir(os.path.join(self.current_dir, folder))]
+        script_folders.append(self.current_dir)
+
         for folder in script_folders:
-            if folder not in sys.path:
+            if folder not in sys.path and folder != self.current_dir:
                 sys.path.append(os.path.join(self.current_dir, folder))
+
+        # make sure we add to original directory too, as it may contain scrips as well
+        if self.current_dir not in sys.path:
+            sys.path.append(self.current_dir)
 
         # search all of our directories for scripts and use their headers to determine their info
         found_scripts = {}
@@ -741,6 +748,5 @@ if __name__ == "__main__":
     area = dsl_preferences.get('docking_position')
     if not area:
         area = None
-    print 'WTF?!', area
     ui.show(dockable=True, allowedAreas=['left', 'right'], area=area, retain=False)
     ui.reposition()

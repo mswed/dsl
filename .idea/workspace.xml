@@ -10,11 +10,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5487e595-4358-420a-8d41-7583e63b08dc" name="Default Changelist" comment="" />
+    <list default="true" id="5487e595-4358-420a-8d41-7583e63b08dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/dsl/scripts/DynamicScriptLibrary.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/dsl/scripts/DynamicScriptLibrary.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,8 +39,36 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mayalib/betterImagePlane.py" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="regy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dsl" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules/dsl/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/dsl/scripts/regy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.regy" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -59,15 +97,35 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="742" y="353" width="426" height="510" key="FileChooserDialogImpl" timestamp="1608438681491">
+    <state x="742" y="353" width="426" height="482" key="FileChooserDialogImpl" timestamp="1608771565673">
       <screen x="0" y="24" width="1920" height="1152" />
     </state>
-    <state x="742" y="353" key="FileChooserDialogImpl/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1608438681491" />
+    <state x="742" y="353" width="426" height="482" key="FileChooserDialogImpl/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1608771565673" />
     <state x="2662" y="308" width="426" height="510" key="FileChooserDialogImpl/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1607299284723" />
-    <state x="2376" y="198" key="SettingsEditor" timestamp="1607299294443">
+    <state width="1899" height="312" key="GridCell.Tab.0.bottom" timestamp="1610344322040">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="456" y="235" key="SettingsEditor/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1607297855008" />
+    <state width="1899" height="312" key="GridCell.Tab.0.bottom/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1610341134260" />
+    <state width="1899" height="312" key="GridCell.Tab.0.bottom/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1610344322040" />
+    <state width="1899" height="312" key="GridCell.Tab.0.center" timestamp="1610344322039">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="312" key="GridCell.Tab.0.center/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1610341134260" />
+    <state width="1899" height="312" key="GridCell.Tab.0.center/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1610344322039" />
+    <state width="1899" height="312" key="GridCell.Tab.0.left" timestamp="1610344322039">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="312" key="GridCell.Tab.0.left/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1610341134260" />
+    <state width="1899" height="312" key="GridCell.Tab.0.left/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1610344322039" />
+    <state width="1899" height="312" key="GridCell.Tab.0.right" timestamp="1610344322040">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1899" height="312" key="GridCell.Tab.0.right/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1610341134260" />
+    <state width="1899" height="312" key="GridCell.Tab.0.right/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1610344322040" />
+    <state x="456" y="235" key="SettingsEditor" timestamp="1610339324738">
+      <screen x="0" y="24" width="1920" height="1152" />
+    </state>
+    <state x="456" y="235" key="SettingsEditor/0.24.1920.1152/1920.0.1920.1080@0.24.1920.1152" timestamp="1610339324738" />
     <state x="2376" y="198" key="SettingsEditor/0.24.1920.1152/1920.0.1920.1080@1920.0.1920.1080" timestamp="1607299294443" />
   </component>
 </project>

@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="tde4" />
+          <option value="core.nodes.Tde4Node.name" />
+          <option value="core.nodes.PointGroup.type" />
+          <option value="core.nodes.Lens.focus" />
+          <option value="core.nodes.Lens.ldmodel" />
+          <option value="core.nodes.Lens.ldadjustable_parameter" />
+          <option value="core.nodes.CurveKey.position" />
+          <option value="core.nodes.CurveKey.mode" />
+          <option value="core.nodes.CurveKey.tangent_1" />
+          <option value="core.nodes.CurveKey.tangent_2" />
+          <option value="core.nodes.Model.name" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
