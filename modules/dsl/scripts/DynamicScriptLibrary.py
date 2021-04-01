@@ -163,8 +163,11 @@ class DSLButton(QtWidgets.QPushButton):
 
         if self.script_path.endswith('.py'):
             if command == '':
-                command_string = 'import %s\nreload(%s)' % (script_name, script_name)
-                exec (command_string)
+                if script_name not in sys.modules:
+                    command_string = 'import %s' % (script_name)
+                else:
+                    command_string = 'reload(%s)' % (script_name)
+                exec command_string
                 # print(self.script_path)
 
             else:
